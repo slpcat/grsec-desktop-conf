@@ -1,0 +1,40 @@
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+Source: grsec-desktop-conf
+Section: misc
+Priority: optional
+Maintainer: Patrick Schleizer <adrelanos@riseup.net>
+Build-Depends: debhelper (>= 9), faketime, genmkfile
+Homepage: https://github.com/HulaHoopWhonix/grsec-desktop-conf
+Vcs-Browser: https://github.com/HulaHoopWhonix/grsec-desktop-conf
+Vcs-Git: https://github.com/HulaHoopWhonix/grsec-desktop-conf.git
+Standards-Version: 3.9.6
+
+Package: grsec-desktop-conf
+Architecture: all
+Depends: linux-grsec-base, ${misc:Depends}
+Description: Grsecurity desktop exceptions
+ This package sets sane defaults for the linux-grsec package shipped
+ by Debian for desktop use.
+ .
+ A custom grsec.conf file with various tunables to suit most
+ desktop user needs. 
+ .
+ deny_new_usb is disabled because a laptop is not really usable 
+ without USB
+ .
+ audit_chdir logging is disabled for being too noisy
+ .
+ Both chroot settings are disabled because I'm building packages 
+ in pbuilder, which uses chroot. By the way, if you're doing that
+ you'll need to add the pbuilder (uid 1234) user to the grsec-tpe
+ (gid 64040) group inside the chroot so it has permissions to 
+ execute stuff.
+ .
+ softmode is disabled but it's a default setting (“secure by default”).
+ You can use it if needed to see what PaX /would/ deny and adjust 
+ things (using paxctl or setting file extended attributes).
+ .
+ A paxctl exceptions list for most common desktop software is included.
