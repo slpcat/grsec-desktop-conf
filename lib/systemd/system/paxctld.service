@@ -1,9 +1,16 @@
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
 [Unit]
 Description=PaX flags maintenance daemon
 After=syslog.target
 
 [Service]
 ExecStart=/sbin/paxctld
+KillMode=process
+TimeoutSec=30
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
